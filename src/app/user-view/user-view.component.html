@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-title>Карточка пользователия</mat-card-title>
+    <h3>{{user?.name}}</h3>
+    <h4>Возраст: {{user?.age}}</h4>
+    <h4>Зарегестрирован: {{user?.registration | date}}</h4>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" routerLink="/users">К списку</button>
+      <button mat-raised-button color="" (click)="editUser()">Редактировать</button>
+    </mat-card-actions>
+  </mat-card>

@@ -1,36 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
+import { UserService } from '../user.service';
 import { map } from 'rxjs/operators'
-import { User } from './user.model';
-
+import { User } from '../user.model';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class AppComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   public dateFrom: number = 0;
   public dateTo: number = 100;
   public users: User[] = [];
   public maxDate = new Date();
-  startDate = new Date(2020, 0, 1)
-  endDate = new Date()
+  startDate = new Date(2020, 0, 1);
+  endDate = new Date();
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  //dataSource = ELEMENT_DATA;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit() {
-    console.log('onInit')
+  ngOnInit(): void {
     this.filterChange();
   }
 
   filterChange() {
-    //console.log('key', event.key)
     this.userService.getUsers()
     .pipe(
       map(users => users.filter(user => user.age > this.dateFrom)),
@@ -46,6 +42,9 @@ export class AppComponent implements OnInit {
   }
 
   selectUser(row: any) {
-console.log('User selected', row)
+    console.log('User selected', row)
+    this.router.navigate(['/user-view', row.position])
   }
+
+
 }

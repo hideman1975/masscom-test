@@ -1,0 +1,35 @@
+<div mat-dialog-content>
+  <p>Изменение пользователя</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Имя</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Возраст</mat-label>
+    <input matInput [(ngModel)]="data.age">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-form-field">
+    <mat-label>Дата регистрации</mat-label>
+    <input matInput [matDatepicker]="datepickerFrom" [(ngModel)]="data.registration" name="startDate" disabled="true">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="datepickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #datepickerFrom>
+    </mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>логин</mat-label>
+    <input matInput [(ngModel)]="login">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>пароль</mat-label>
+    <input matInput [(ngModel)]="password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Не сохранять</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Сохранить</button>
+</div>

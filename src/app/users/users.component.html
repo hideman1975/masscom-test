@@ -1,0 +1,76 @@
+<div style="">
+
+    <form class="example-form">
+      <div style="display: flex;">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Возраст от</mat-label>
+          <input matInput placeholder="введите возраст" type="number" (change)="filterChange()" [(ngModel)]="dateFrom"
+            name="dateFrom">
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Возраст до</mat-label>
+          <input matInput placeholder="введите возраст" type="number" (change)="filterChange()" [(ngModel)]="dateTo"
+            name="dateTo">
+        </mat-form-field>
+      </div>
+  
+      <div style="display: flex;">
+        <mat-form-field appearance="fill" class="example-form-field">
+          <mat-label>Выбрать начальную дату</mat-label>
+          <input matInput [matDatepicker]="datepickerFrom" [max]="maxDate" [(ngModel)]="startDate" name="startDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="datepickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #datepickerFrom>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply (click)="filterChange()">Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="example-form-field">
+          <mat-label>Выбрать конечную дату</mat-label>
+          <input matInput [matDatepicker]="datepickerTo" [max]="maxDate" [(ngModel)]="endDate" name="endDate">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="datepickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #datepickerTo>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply (click)="filterChange()">Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+  
+    </form>
+  
+    <div>
+      <table mat-table [dataSource]="users">
+  
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Имя </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Возраст </th>
+          <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Регистрация </th>
+          <td mat-cell *matCellDef="let element"> {{element.registration | date}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectUser(row)" class="highlight-row"></tr>
+      </table>
+    </div>
+  
+  </div>

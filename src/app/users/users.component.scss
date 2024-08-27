@@ -22,3 +22,12 @@ table {
     position: sticky;
     z-index: 10;
   }
+
+  .highlight-row {
+    transition: background-color 0.3s; /* Smooth transition */
+    cursor: pointer;
+  }
+  
+  .highlight-row:hover {
+    background-color: #e0e0e0; /* Darker gray on hover */
+  }
